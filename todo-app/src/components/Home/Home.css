@@ -1,0 +1,44 @@
+.todo .navbar {
+  color: white;
+  background-color: blue;
+  padding: 1.5rem;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+.todo .list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.todo .list .one {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: cadetblue;
+  width: 50%;
+  margin-bottom: 2rem;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.todo .list .one .task-list {
+  background-color: rgb(195, 49, 49);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  width: 80%;
+}
+.todo .list .one .task-list .icons .delete-icon {
+  cursor: pointer;
+}
+.todo .list .one .task-list .icons .update-icon {
+  cursor: pointer;
+}
+.todo .list .one .task-list:hover {
+  background-color: aqua;
+  color: black;
+}/*# sourceMappingURL=Home.css.map */

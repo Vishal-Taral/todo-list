@@ -1,11 +1,24 @@
-import './Inputs.scss'
+import "./Input.scss";
 
 const Inputs = () => {
-    return(
-        <div>
-            <input type="text" name="task" placeholder='Type here e.g. buy cake' />
-        </div>
-    );
-}
+  const ChangeHandler = (event) => {
+    console.log(event.target.value);
+  }
+  return (
+    <div>
+      <div className="Input-box">
+        <input
+          type="text"
+          placeholder="Type here e.g. buy cake"
+          className="input"
+          onChange={ChangeHandler}
+        ></input>
 
-export default Inputs 
+      </div>
+
+      
+    </div>
+  );
+};
+
+export default Inputs;
