@@ -7,6 +7,10 @@ import Inputs from "../Inputs/Inputs";
 
 const Home = (props) => {
   const [works, setWorks] = useState([]);
+  
+  useEffect(() => {
+    getJsonData();
+  }, []);
 
   // json Calling
   const baseURL = "http://localhost:8000/task";
@@ -23,13 +27,17 @@ const Home = (props) => {
       });
   };
 
-  
-  useEffect(() => {
-    getJsonData();
-  }, []);
 
-  const deleteHandler = (id) => {
-    axios.delete(`${baseURL},${id}`)
+
+  const deleteHandler = async (id) => {
+    // console.log(id)
+    //  await axios.delete(`http://localhost:8000/task/${id}`,).then( (res) => {
+    //     console.log('deleted',res);
+    //   }).catch((err) => {
+    //     console.log(err);
+    //   });
+    return await axios.delete(`http://localhost:8000/task/${id}`).then( (res) => {
+    })
   }
 
   return (
@@ -51,7 +59,8 @@ const Home = (props) => {
                 {obj.description}
                 <div>{obj.date}</div>
                 <div className="icons">
-                  <i className="fa fa-trash-o delete-icon" aria-hidden="true" onClick={deleteHandler}></i>
+                  <i className="fa fa-trash-o delete-icon" aria-hidden="true" onClick={()=>{deleteHandler(obj.id)}}></i>
+                  {/* <button onClick={()=>{deleteHandler(obj.id)}}>click</button> */}
                   &emsp;
                   <i
                     className="fa fa-pencil-square-o update-icon"
