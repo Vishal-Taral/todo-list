@@ -4,14 +4,20 @@ import { useState } from 'react';
 
 const Form = (props) => {
     const [task, setTask] = useState({});
+    const [date, setDate] = useState({});
 
-    const changeHandler = (event) => {
+    const changeTaskHandler = (event) => {
         setTask(event.target.value);
+    }
+
+    const changeDateHandler = (event) => {
+      setDate(event.target.value);
     }
 
     const submitHandler = () => {
         axios.post(props.baseURL , {
             description : task,
+            date : date,
         })
     }
 
@@ -56,7 +62,19 @@ const Form = (props) => {
                           type="text"
                           class="form-control"
                           id="recipient-name"
-                          onChange={changeHandler}
+                          onChange={changeTaskHandler}
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">
+                            Enter date
+                        </label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="recipient-name"
+                          onChange={changeDateHandler}
                         />
                       </div>
                     </form>

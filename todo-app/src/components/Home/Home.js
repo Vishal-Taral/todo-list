@@ -49,6 +49,7 @@ const Home = (props) => {
             return (
               <div className="task-list" key={key}>
                 {obj.description}
+                <div>{obj.date}</div>
                 <div className="icons">
                   <i class="fa fa-trash-o delete-icon" aria-hidden="true" onClick={deleteHandler}></i>
                   &emsp;
