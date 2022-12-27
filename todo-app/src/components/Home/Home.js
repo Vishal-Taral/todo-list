@@ -30,14 +30,14 @@ const Home = (props) => {
 
 
   const deleteHandler = async (id) => {
-    // console.log(id)
-    //  await axios.delete(`http://localhost:8000/task/${id}`,).then( (res) => {
-    //     console.log('deleted',res);
-    //   }).catch((err) => {
-    //     console.log(err);
-    //   });
-    return await axios.delete(`http://localhost:8000/task/${id}`).then( (res) => {
-    })
+    window.location.reload(true);
+    console.log(id)
+     await axios.delete(`http://localhost:8000/task/${id}`,).then( (res) => {
+        console.log('deleted',res);
+      }).catch((err) => {
+        console.log(err);
+      });
+    
   }
 
   return (
@@ -59,7 +59,7 @@ const Home = (props) => {
                 {obj.description}
                 <div>{obj.date}</div>
                 <div className="icons">
-                  <i className="fa fa-trash-o delete-icon" aria-hidden="true" onClick={()=>{deleteHandler(obj.id)}}></i>
+                  <i type="button" className="fa fa-trash-o delete-icon" aria-hidden="true" onClick={()=>{deleteHandler(obj.id)}}></i>
                   {/* <button onClick={()=>{deleteHandler(obj.id)}}>click</button> */}
                   &emsp;
                   <i
