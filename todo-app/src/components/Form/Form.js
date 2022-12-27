@@ -5,6 +5,7 @@ import { useState } from 'react';
 const Form = (props) => {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
+  
 
   const changeTaskHandler = (event) => {
     setTask(event.target.value);
@@ -14,10 +15,13 @@ const Form = (props) => {
     setDate(event.target.value);
   }
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault()
     axios.post(props.baseURL, {
       description: task,
       date: date,
+    }).then((res)=>{
+      console.log('====>',res)
     })
   }
 
