@@ -3,8 +3,8 @@ import './Form.scss';
 import { useState } from 'react';
 
 const Form = (props) => {
-    const [task, setTask] = useState({});
-    const [date, setDate] = useState({});
+    const [task, setTask] = useState("");
+    const [date, setDate] = useState("");
 
     const changeTaskHandler = (event) => {
         setTask(event.target.value);
@@ -20,6 +20,7 @@ const Form = (props) => {
             date : date,
         })
     }
+    
 
 
     return(
@@ -27,7 +28,7 @@ const Form = (props) => {
              <div>
             <button
               type="button"
-              class="btn btn-primary add-btn"
+              className="btn btn-primary add-btn"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               data-bs-whatever="@fat"
@@ -38,41 +39,41 @@ const Form = (props) => {
             {/* POP UP */}
 
             <div
-              class="modal fade"
+              className="modal fade"
               id="exampleModal"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="fs-5" id="exampleModalLabel"> Add Item</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h1 className="fs-5" id="exampleModalLabel"> Add Item</h1>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     ></button>
                   </div>
 
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <form>
-                      <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">
+                      <div className="mb-3">
+                        <label htmlFor="recipient-name" className="col-form-label">
                             Enter Task
                         </label>
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="recipient-name"
                           onChange={changeTaskHandler}
                         />
                       </div>
 
-                      <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">
+                      <div className="mb-3">
+                        <label htmlFor="recipient-name" className="col-form-label">
                             Enter date
                         </label>
                         <input
                           type="date"
-                          class="form-control"
+                          className="form-control"
                           id="recipient-name"
                           onChange={changeDateHandler}
                         />
@@ -80,8 +81,8 @@ const Form = (props) => {
                     </form>
                   </div>
                   
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onClick={submitHandler}>SUBMIT</button>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-primary" onClick={submitHandler}>SUBMIT</button>
                   </div>
                 </div>
               </div>

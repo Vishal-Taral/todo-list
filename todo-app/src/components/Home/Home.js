@@ -28,8 +28,8 @@ const Home = (props) => {
     getJsonData();
   }, []);
 
-  const deleteHandler = () => {
-    
+  const deleteHandler = (id) => {
+    axios.delete(`${baseURL},${id}`)
   }
 
   return (
@@ -51,10 +51,10 @@ const Home = (props) => {
                 {obj.description}
                 <div>{obj.date}</div>
                 <div className="icons">
-                  <i class="fa fa-trash-o delete-icon" aria-hidden="true" onClick={deleteHandler}></i>
+                  <i className="fa fa-trash-o delete-icon" aria-hidden="true" onClick={deleteHandler}></i>
                   &emsp;
                   <i
-                    class="fa fa-pencil-square-o update-icon"
+                    className="fa fa-pencil-square-o update-icon"
                     aria-hidden="true"
                   ></i>
                 </div>
