@@ -28,7 +28,7 @@
             -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
             -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
             box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-            
+
             .task-list {
                 background-color: rgb(195, 49, 49);
                 color: white;
@@ -39,24 +39,43 @@
                 margin-top: 0.5rem;
                 width: 80%;
 
-                .icons{
-                    .delete-icon{
+                .icons {
+                    .delete-icon {
                         cursor: pointer;
                     }
-                    .update-icon{
+
+                    .update-icon {
                         cursor: pointer;
                     }
                 }
             }
 
-            .task-list:hover{
+            .task-list:hover {
                 background-color: aqua;
                 color: black;
             }
-            
-        }
-        
-    }
 
+            .Form-component {
+                .two {
+                    .add-btn {
+                        margin: 1rem;
+                        -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+                        -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+                        box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+                    }
+
+                    .add-btn:hover {
+                        background-color: rgb(186, 104, 90);
+
+                        -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+                        -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+                        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+                    }
+                }
+            }
+        }
+
+
+    }
 
 }

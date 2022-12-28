@@ -2,7 +2,6 @@ import React from "react";
 import "./Home.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import Form from "../Form/Form";
 import Inputs from "../Inputs/Inputs";
 
 const Home = (props) => {
@@ -11,34 +10,18 @@ const Home = (props) => {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
   const [postData, setPostData] = useState("");
-
+  const [newid, setNewid] = useState();
   useEffect(() => {
     getJsonData();
   }, [err, postData]);
-
-
+  const baseURL = "http://localhost:8000/task";
   const changeTaskHandler = (event) => {
     setTask(event.target.value);
   }
-
   const changeDateHandler = (event) => {
     setDate(event.target.value);
   }
-  const baseURL = "http://localhost:8000/task";
-
-  const submitHandler = (e) => {
-    e.preventDefault()
-    axios.post(baseURL, {
-      description: task,
-      date: date,
-    }).then((res) => {
-      setPostData(res)
-      setTask("")
-      setDate("")
-    })
-  }
-
-  // json Calling
+  //get Call
   const getJsonData = () => {
     axios
       .get(baseURL)
@@ -51,7 +34,19 @@ const Home = (props) => {
         console.log("error", err);
       });
   };
-
+  // post Call
+  const submitHandler = (e) => {
+    e.preventDefault()
+    axios.post(baseURL, {
+      description: task,
+      date: date,
+    }).then((res) => {
+      setPostData(res)
+      setTask("")
+      setDate("")
+    })
+  }
+  //delete call
   const deleteHandler = async (id) => {
     // window.location.reload(true);
     console.log(id)
@@ -62,21 +57,29 @@ const Home = (props) => {
       console.log(err);
     });
   }
-
-  const updateHandler = async () => {
-      
+  //put call
+  const updateHandler = async (e) => {
+    e.preventDefault()
+    await axios.put(`http://localhost:8000/task/${newid}`, {
+      id: newid,
+      description: task,
+      date: date
+    }).then((res) => {
+      setPostData(res)
+      setTask("");
+      setDate("");
+    })
   }
+
   return (
     <div className="todo">
       <div className="navbar">
         <input type="text" placeholder="MY todo list list"></input>
         <button>Save This List</button>
       </div>
-
       <div>
         <Inputs />
       </div>
-
       <div className="list">
         <div className="one">
           {works.map((obj, key) => {
@@ -85,23 +88,27 @@ const Home = (props) => {
                 {obj.description}
                 <div>{obj.date}</div>
                 <div className="icons">
-                  <i type="button" className="fa fa-trash-o delete-icon" aria-hidden="true" onClick={() => { deleteHandler(obj.id) }}></i>
-                  {/* <button onClick={()=>{deleteHandler(obj.id)}}>click</button> */}
-                  &emsp;
+
                   <i
                     className="fa fa-pencil-square-o update-icon"
                     aria-hidden="true"
-                    onClick={updateHandler}
+                    data-bs-target="#exampleModalOne"
+                    data-bs-whatever="@fat"
+                    data-bs-toggle="modal"
+                    onClick={() => { setNewid(obj.id) }}
                   ></i>
+                  &emsp;
+
+                  <i type="button"
+                    className="fa fa-trash-o delete-icon "
+                    aria-hidden="true"
+                    onClick={() => { deleteHandler(obj.id) }}></i>
                 </div>
               </div>
             );
           })}
-
-          {/* <Form baseURL={baseURL}/> */}
-
           <div className='Form-component'>
-            <div>
+            <div className="two">
               <button
                 type="button"
                 className="btn btn-primary add-btn"
@@ -111,56 +118,104 @@ const Home = (props) => {
               >
                 Add Item
               </button>
+              <div className="popups">
+                {/* pop up for update call */}
+                <div
+                  className="modal fade"
+                  id="exampleModalOne"
+                  tabIndex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h1 className="fs-5" id="exampleModalLabel"> Add Item</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        ></button>
+                      </div>
 
-              {/* POP UP */}
+                      <div className="modal-body">
+                        <form>
+                          <div className="mb-3">
+                            <label htmlFor="recipient-name" className="col-form-label">
+                              Enter Task to upadate
+                            </label>
+                            <input
+                              value={task}
+                              type="text"
+                              className="form-control"
+                              id="recipient-name"
+                              onChange={changeTaskHandler}
+                            />
+                          </div>
 
-              <div
-                className="modal fade"
-                id="exampleModal"
-                tabIndex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h1 className="fs-5" id="exampleModalLabel"> Add Item</h1>
-                      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                      ></button>
+                          <div className="mb-3">
+                            <label htmlFor="recipient-name" className="col-form-label">
+                              Enter date to update
+                            </label>
+                            <input
+                              value={date}
+                              type="date"
+                              className="form-control"
+                              id="recipient-name"
+                              onChange={changeDateHandler}
+                            />
+                          </div>
+                          <div className="modal-footer ">
+                            <button className="btn btn-primary submit-btn" data-bs-dismiss="modal" aria-label="Close" onClick={updateHandler}>SUBMIT</button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-
-                    <div className="modal-body">
-                      <form>
-                        <div className="mb-3">
-                          <label htmlFor="recipient-name" className="col-form-label">
-                            Enter Task
-                          </label>
-                          <input
-                            value={task}
-                            type="text"
-                            className="form-control"
-                            id="recipient-name"
-                            onChange={changeTaskHandler}
-                          />
-                        </div>
-
-                        <div className="mb-3">
-                          <label htmlFor="recipient-name" className="col-form-label">
-                            Enter date
-                          </label>
-                          <input
-                            value={date}
-                            type="date"
-                            className="form-control"
-                            id="recipient-name"
-                            onChange={changeDateHandler}
-                          />
-                        </div>
-
-                        <div className="modal-footer ">
-                          <button className="btn btn-primary submit-btn" data-bs-dismiss="modal" aria-label="Close" onClick={submitHandler}>SUBMIT</button>
-                        </div>
-                      </form>
+                  </div>
+                </div>
+                {/* POP UP for post call*/}
+                <div
+                  className="modal fade"
+                  id="exampleModal"
+                  tabIndex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h1 className="fs-5" id="exampleModalLabel"> Add Item</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        ></button>
+                      </div>
+                      <div className="modal-body">
+                        <form>
+                          <div className="mb-3">
+                            <label htmlFor="recipient-name" className="col-form-label">
+                              Add Item
+                            </label>
+                            <input
+                              value={task}
+                              type="text"
+                              className="form-control"
+                              id="recipient-name"
+                              onChange={changeTaskHandler}
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <label htmlFor="recipient-name" className="col-form-label">
+                              Add Data
+                            </label>
+                            <input
+                              value={date}
+                              type="date"
+                              className="form-control"
+                              id="recipient-name"
+                              onChange={changeDateHandler}
+                            />
+                          </div>
+                          <div className="modal-footer ">
+                            <button className="btn btn-primary submit-btn" data-bs-dismiss="modal" aria-label="Close" onClick={submitHandler}>SUBMIT</button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>

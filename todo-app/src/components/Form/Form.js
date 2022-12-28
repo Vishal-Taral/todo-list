@@ -21,7 +21,7 @@ const Form = (props) => {
       description: task,
       date: date,
     }).then((res)=>{
-      console.log('====>',res)
+      console.log('response',res)
     })
   }
 
