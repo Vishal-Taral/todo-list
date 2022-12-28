@@ -2,7 +2,7 @@ import React from "react";
 import "./Home.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Inputs from "../Inputs/Inputs";
+// import Inputs from "../Inputs/Inputs";
 
 const Home = (props) => {
   const [works, setWorks] = useState([]);
@@ -20,6 +20,10 @@ const Home = (props) => {
   }
   const changeDateHandler = (event) => {
     setDate(event.target.value);
+  }
+
+  const SearchHandler = (event) => {
+    console.log(event.target.value);
   }
   //get Call
   const getJsonData = () => {
@@ -49,13 +53,18 @@ const Home = (props) => {
   //delete call
   const deleteHandler = async (id) => {
     // window.location.reload(true);
-    console.log(id)
-    await axios.delete(`http://localhost:8000/task/${id}`).then((res) => {
-      console.log('deleted', res);
-      setErr(res)
-    }).catch((err) => {
-      console.log(err);
-    });
+    if (window.confirm("are you sure wanted to delete")) {
+      console.log(id)
+      await axios.delete(`http://localhost:8000/task/${id}`).then((res) => {
+        console.log('deleted', res);
+        setErr(res)
+      }).catch((err) => {
+        console.log(err);
+      });
+    } else {
+      alert("not deleted")
+    }
+
   }
   //put call
   const updateHandler = async (e) => {
@@ -73,15 +82,24 @@ const Home = (props) => {
 
   return (
     <div className="todo">
-      <div className="navbar">
+      {/* <div className="navbar">
         <input type="text" placeholder="MY todo list list"></input>
         <button>Save This List</button>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         <Inputs />
-      </div>
+      </div> */}
       <div className="list">
         <div className="one">
+          <div className="Input-box">
+            <input
+              type="text"
+              placeholder="Type Here To Search"
+              className="search-box"
+              onChange={SearchHandler}
+            />
+
+          </div>
           {works.map((obj, key) => {
             return (
               <div className="task-list" key={key}>
@@ -130,7 +148,7 @@ const Home = (props) => {
                   <div className="modal-dialog">
                     <div className="modal-content">
                       <div className="modal-header">
-                        <h1 className="fs-5" id="exampleModalLabel"> Add Item</h1>
+                        <h1 className="fs-5" id="exampleModalLabel"> Update Item</h1>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         ></button>
                       </div>
@@ -201,7 +219,7 @@ const Home = (props) => {
                           </div>
                           <div className="mb-3">
                             <label htmlFor="recipient-name" className="col-form-label">
-                              Add Data
+                              Add Date
                             </label>
                             <input
                               value={date}

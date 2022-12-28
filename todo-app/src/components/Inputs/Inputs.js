@@ -9,7 +9,7 @@ const Inputs = () => {
       <div className="Input-box">
         <input
           type="text"
-          placeholder="Type here e.g. buy cake"
+          placeholder="Type Here To Search"
           className="input"
           onChange={ChangeHandler}
         ></input>
