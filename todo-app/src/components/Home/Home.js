@@ -2,7 +2,7 @@ import React from "react";
 import "./Home.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import Inputs from "../Inputs/Inputs";
+import Inputs from "../Inputs/Inputs";
 
 const Home = (props) => {
   const [works, setWorks] = useState([]);
@@ -21,17 +21,20 @@ const Home = (props) => {
   const changeDateHandler = (event) => {
     setDate(event.target.value);
   }
+  // function to search item by items name or date
 
   const SearchHandler = (event) => {
-    console.log(event.target.value);
+    const findItemByName = works.filter((name) => name.description === event.target.value);
+    console.log(findItemByName);
   }
+
   //get Call
   const getJsonData = () => {
     axios
       .get(baseURL)
       .then((res) => {
         const response = res.data;
-        console.log("response", response);
+        console.log("read data", response);
         setWorks(response);
       })
       .catch((err) => {
@@ -46,6 +49,7 @@ const Home = (props) => {
       date: date,
     }).then((res) => {
       setPostData(res)
+      console.log("data is created" ,res);
       setTask("")
       setDate("")
     })
@@ -56,7 +60,7 @@ const Home = (props) => {
     if (window.confirm("are you sure wanted to delete")) {
       console.log(id)
       await axios.delete(`http://localhost:8000/task/${id}`).then((res) => {
-        console.log('deleted', res);
+        console.log('Item Is deleted', res);
         setErr(res)
       }).catch((err) => {
         console.log(err);
@@ -75,6 +79,7 @@ const Home = (props) => {
       date: date
     }).then((res) => {
       setPostData(res)
+      console.log("data is upadated", res);
       setTask("");
       setDate("");
     })
@@ -82,28 +87,28 @@ const Home = (props) => {
 
   return (
     <div className="todo">
-      {/* <div className="navbar">
+      <div className="navbar">
         <input type="text" placeholder="MY todo list list"></input>
         <button>Save This List</button>
-      </div> */}
-      {/* <div>
+      </div>
+      <div>
         <Inputs />
-      </div> */}
+      </div>
       <div className="list">
-        <div className="one">
-          <div className="Input-box">
+        <div className="one ">
+          <div className="input-box rounded">
             <input
               type="text"
               placeholder="Type Here To Search"
-              className="search-box"
+              className="search-box rounded-start"
               onChange={SearchHandler}
-            />
+            ></input><i type="button" className="fa fa-search search-icon rounded-end"></i>
 
           </div>
           {works.map((obj, key) => {
             return (
               <div className="task-list" key={key}>
-                {obj.description}
+                <div>{obj.description}</div>
                 <div>{obj.date}</div>
                 <div className="icons">
 

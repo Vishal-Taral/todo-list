@@ -1,5 +1,5 @@
 .todo {
-    margin-top: 2rem;
+    // margin-top: 2rem;
     .navbar {
         color: white;
         background-color: blue;
@@ -30,9 +30,23 @@
             -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
             box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 
-            .search-box{
-                outline: none;
+            .input-box{
+                display: flex;
+                border: 1px solid black;
+                // border-radius: 5px;
+                .search-icon{
+                    border: none;
+                    outline: none;
+                    padding: 0.3rem;
+                    background-color: white;
+                }
+                .search-box{
+                    outline: none;
+                    border: none;
+                    border-left: 1px solid gray;
+                }
             }
+            
             .task-list {
                 background-color: rgb(195, 49, 49);
                 color: white;
