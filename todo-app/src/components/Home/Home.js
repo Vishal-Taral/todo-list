@@ -2,19 +2,29 @@ import React from "react";
 import "./Home.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Inputs from "../Inputs/Inputs";
+// import Inputs from "../Inputs/Inputs";
 
 const Home = (props) => {
   const [works, setWorks] = useState([]);
   const [err, setErr] = useState();
+  const [author, setAuthor] = useState("");
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
   const [postData, setPostData] = useState("");
+  const [filteredItem, setFilteredItem] = useState("");
   const [newid, setNewid] = useState();
+
   useEffect(() => {
     getJsonData();
   }, [err, postData]);
+
+  works.sort((a, b) => new Date(a.date) - new Date(b.date));       // code for sorting 
+
   const baseURL = "http://localhost:8000/task";
+
+  const changeAuthorNameHandler = (event) => {
+    setAuthor(event.target.value);
+  }
   const changeTaskHandler = (event) => {
     setTask(event.target.value);
   }
@@ -24,8 +34,8 @@ const Home = (props) => {
   // function to search item by items name or date
 
   const SearchHandler = (event) => {
-    const findItemByName = works.filter((name) => name.description === event.target.value);
-    console.log(findItemByName);
+    setFilteredItem(event.target.value)
+
   }
 
   //get Call
@@ -47,11 +57,13 @@ const Home = (props) => {
     axios.post(baseURL, {
       description: task,
       date: date,
+      author: author,
     }).then((res) => {
       setPostData(res)
-      console.log("data is created" ,res);
+      console.log("data is created", res);
       setTask("")
       setDate("")
+      setAuthor("");
     })
   }
   //delete call
@@ -65,9 +77,9 @@ const Home = (props) => {
       }).catch((err) => {
         console.log(err);
       });
-    } else {
+    } /* else {
       alert("not deleted")
-    }
+    } */
 
   }
   //put call
@@ -76,12 +88,14 @@ const Home = (props) => {
     await axios.put(`http://localhost:8000/task/${newid}`, {
       id: newid,
       description: task,
-      date: date
+      date: date,
+      author: author
     }).then((res) => {
       setPostData(res)
       console.log("data is upadated", res);
       setTask("");
       setDate("");
+      setAuthor("");
     })
   }
 
@@ -91,9 +105,9 @@ const Home = (props) => {
         <input type="text" placeholder="MY todo list list"></input>
         <button>Save This List</button>
       </div>
-      <div>
-        <Inputs />
-      </div>
+      {/* <div>
+        <Inputs SearchHandler={SearchHandler}/>
+      </div> */}
       <div className="list">
         <div className="one ">
           <div className="input-box rounded">
@@ -105,9 +119,10 @@ const Home = (props) => {
             ></input><i type="button" className="fa fa-search search-icon rounded-end"></i>
 
           </div>
-          {works.map((obj, key) => {
+          {works.filter((itemName) => itemName.author.toLowerCase().includes(filteredItem) || itemName.date.includes(filteredItem) || itemName.description.toLowerCase().includes(filteredItem)).map((obj, key) => {
             return (
               <div className="task-list" key={key}>
+                <div>{obj.author}</div>
                 <div>{obj.description}</div>
                 <div>{obj.date}</div>
                 <div className="icons">
@@ -162,6 +177,19 @@ const Home = (props) => {
                         <form>
                           <div className="mb-3">
                             <label htmlFor="recipient-name" className="col-form-label">
+                              Enter Author to upadate
+                            </label>
+                            <input
+                              value={author}
+                              type="text"
+                              className="form-control"
+                              id="recipient-name"
+                              onChange={changeAuthorNameHandler}
+                            />
+                          </div>
+
+                          <div className="mb-3">
+                            <label htmlFor="recipient-name" className="col-form-label">
                               Enter Task to upadate
                             </label>
                             <input
@@ -212,7 +240,19 @@ const Home = (props) => {
                         <form>
                           <div className="mb-3">
                             <label htmlFor="recipient-name" className="col-form-label">
-                              Add Item
+                              Add Author Name
+                            </label>
+                            <input
+                              value={author}
+                              type="text"
+                              className="form-control"
+                              id="recipient-name"
+                              onChange={changeAuthorNameHandler}
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <label htmlFor="recipient-name" className="col-form-label">
+                              Add Title
                             </label>
                             <input
                               value={task}
