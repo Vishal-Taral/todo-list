@@ -61,9 +61,9 @@ const Home = (props) => {
     }).then((res) => {
       setPostData(res)
       console.log("data is created", res);
-      setTask("")
-      setDate("")
-      setAuthor("");
+      // setTask("")
+      // setDate("")
+      // setAuthor("");
     })
   }
   //delete call
@@ -77,7 +77,7 @@ const Home = (props) => {
       }).catch((err) => {
         console.log(err);
       });
-    } /* else {
+    }/* else {
       alert("not deleted")
     } */
 
@@ -102,26 +102,34 @@ const Home = (props) => {
   return (
     <div className="todo">
       <div className="navbar">
-        <input type="text" placeholder="MY todo list list"></input>
-        <button>Save This List</button>
+        <h2>My Todo Application</h2>
+        <button className="save-button">Save This List</button>
       </div>
-      {/* <div>
-        <Inputs SearchHandler={SearchHandler}/>
-      </div> */}
       <div className="list">
         <div className="one ">
-          <div className="input-box rounded">
+          <div className="input-box ">
             <input
               type="text"
               placeholder="Type Here To Search"
               className="search-box rounded-start"
               onChange={SearchHandler}
-            ></input><i type="button" className="fa fa-search search-icon rounded-end"></i>
+            ></input>
+
+            <button
+              type="button"
+              className="btn btn-primary add-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              data-bs-whatever="@fat"
+            >
+              Add Item
+            </button>
 
           </div>
           {works.filter((itemName) => itemName.author.toLowerCase().includes(filteredItem) || itemName.date.includes(filteredItem) || itemName.description.toLowerCase().includes(filteredItem)).map((obj, key) => {
             return (
               <div className="task-list" key={key}>
+                <div><input type="checkbox" className="check-box" /></div>
                 <div>{obj.author}</div>
                 <div>{obj.description}</div>
                 <div>{obj.date}</div>
@@ -139,6 +147,7 @@ const Home = (props) => {
 
                   <i type="button"
                     className="fa fa-trash-o delete-icon "
+                    data-bs-target="#deletemodel"
                     aria-hidden="true"
                     onClick={() => { deleteHandler(obj.id) }}></i>
                 </div>
@@ -147,16 +156,17 @@ const Home = (props) => {
           })}
           <div className='Form-component'>
             <div className="two">
-              <button
-                type="button"
-                className="btn btn-primary add-btn"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                data-bs-whatever="@fat"
-              >
-                Add Item
-              </button>
               <div className="popups">
+                {/* pop up for delete  */}
+                <div className="modal" id="deletemodel">
+                  <div className="modal_box">
+                    <p>You sure you wanna delete?</p>
+                    <button className="modal_buttonCancel">Cancel</button>
+                    <button className="modal_buttoDelete">
+                      Confirm
+                    </button>
+                  </div>
+                </div>
                 {/* pop up for update call */}
                 <div
                   className="modal fade"
@@ -174,7 +184,7 @@ const Home = (props) => {
                       </div>
 
                       <div className="modal-body">
-                        <form>
+                        <div>
                           <div className="mb-3">
                             <label htmlFor="recipient-name" className="col-form-label">
                               Enter Author to upadate
@@ -216,7 +226,7 @@ const Home = (props) => {
                           <div className="modal-footer ">
                             <button className="btn btn-primary submit-btn" data-bs-dismiss="modal" aria-label="Close" onClick={updateHandler}>SUBMIT</button>
                           </div>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -237,7 +247,7 @@ const Home = (props) => {
                         ></button>
                       </div>
                       <div className="modal-body">
-                        <form>
+                        <div>
                           <div className="mb-3">
                             <label htmlFor="recipient-name" className="col-form-label">
                               Add Author Name
@@ -277,12 +287,14 @@ const Home = (props) => {
                           <div className="modal-footer ">
                             <button className="btn btn-primary submit-btn" data-bs-dismiss="modal" aria-label="Close" onClick={submitHandler}>SUBMIT</button>
                           </div>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                {/* Post Call pop up end  */}
               </div>
+              {/* popups div ending here  */}
             </div>
           </div>
         </div>

@@ -12,29 +12,38 @@
     .list {
         display: flex;
         align-items: center;
-        justify-content: center;
-        margin-top: 1rem;
+        justify-content:space-evenly;
 
         .one {
             display: flex;
             align-items: center;
             flex-direction: column;
-            border: 1px solid black;
             border-radius: 10px;
-            background-color: cadetblue;
-            width: 50%;
+            width: 100%;
             margin-bottom: 2rem;
-            padding-top: 1rem;
 
-            // Shoadow 
-            -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-            box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            .add-btn {
+                margin: 1rem;
+                // shadow
+                -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+                box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            }
+
+            .add-btn:hover {
+                background-color: rgb(186, 104, 90);
+                // shadow
+                -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+                box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+            }
 
             .input-box{
                 display: flex;
-                border: 1px solid black;
-                // border-radius: 5px;
+                width: 100%;
+                font-size: 30px;
+                font-weight: 900;
+                border-bottom: 0.5px solid gray;
                 .search-icon{
                     border: none;
                     outline: none;
@@ -44,21 +53,27 @@
                 .search-box{
                     outline: none;
                     border: none;
-                    border-left: 1px solid gray;
                     padding-left: 0.5rem;
+                    width: 90%;
                 }
             }
             
             .task-list {
-                background-color: rgb(195, 49, 49);
-                color: white;
+                color: gray;
                 padding: 1rem;
-                border-radius: 8px;
                 display: flex;
                 justify-content: space-between;
-                margin-top: 0.5rem;
-                width: 80%;
+                width: 100%;
+                padding-left: 5%;
+                padding-right: 5%;
+                border-bottom: 0.5px solid gray;
+                font-size: 20px;
+                font-weight: 650;
 
+                .check-box{
+                    width: 20px;
+                    height: 20px;
+                }
                 .icons {
                     .delete-icon {
                         cursor: pointer;
@@ -71,28 +86,13 @@
             }
 
             .task-list:hover {
-                background-color: aqua;
+                border: 1px solid black;
                 color: black;
             }
 
-            .Form-component {
-                .two {
-                    .add-btn {
-                        margin: 1rem;
-                        -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-                        -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-                        box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-                    }
-
-                    .add-btn:hover {
-                        background-color: rgb(186, 104, 90);
-
-                        -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
-                        -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
-                        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
-                    }
-                }
-            }
+            // .Form-component {
+                
+            // }
         }
 
 

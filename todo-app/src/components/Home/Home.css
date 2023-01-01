@@ -9,28 +9,58 @@
 .todo .list {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .todo .list .one {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid black;
   border-radius: 10px;
-  background-color: cadetblue;
-  width: 50%;
+  width: 100%;
   margin-bottom: 2rem;
+}
+.todo .list .one .add-btn {
+  margin: 1rem;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
+.todo .list .one .add-btn:hover {
+  background-color: rgb(186, 104, 90);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.todo .list .one .input-box {
+  display: flex;
+  width: 100%;
+  font-size: 30px;
+  font-weight: 900;
+  border-bottom: 0.5px solid gray;
+}
+.todo .list .one .input-box .search-icon {
+  border: none;
+  outline: none;
+  padding: 0.3rem;
+  background-color: white;
+}
+.todo .list .one .input-box .search-box {
+  outline: none;
+  border: none;
+  padding-left: 0.5rem;
+  width: 90%;
+}
 .todo .list .one .task-list {
-  background-color: rgb(195, 49, 49);
-  color: white;
+  color: gray;
   padding: 1rem;
-  border-radius: 8px;
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
-  width: 80%;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-bottom: 0.5px solid gray;
+  font-size: 20px;
+  font-weight: 650;
+}
+.todo .list .one .task-list .check-box {
+  width: 20px;
+  height: 20px;
 }
 .todo .list .one .task-list .icons .delete-icon {
   cursor: pointer;
@@ -39,6 +69,6 @@
   cursor: pointer;
 }
 .todo .list .one .task-list:hover {
-  background-color: aqua;
+  border: 1px solid black;
   color: black;
 }/*# sourceMappingURL=Home.css.map */
