@@ -61,35 +61,34 @@ const Home = (props) => {
     }).then((res) => {
       setPostData(res)
       console.log("data is created", res);
-      // setTask("")
-      // setDate("")
-      // setAuthor("");
+      setTask("")
+      setDate("")
+      setAuthor("");
     })
   }
   //delete call
   const deleteHandler = async (id) => {
     // window.location.reload(true);
-    if (window.confirm("are you sure wanted to delete")) {
-      console.log(id)
-      await axios.delete(`http://localhost:8000/task/${id}`).then((res) => {
+    // if (confirm("Are you sure wanted to delete")) {
+      console.log()
+      await axios.delete(`http://localhost:8000/task/${newid}`).then((res) => {
         console.log('Item Is deleted', res);
         setErr(res)
       }).catch((err) => {
         console.log(err);
       });
-    }/* else {
+    /* }  else {
       alert("not deleted")
     } */
 
   }
   //put call
-  const updateHandler = async (e) => {
-    e.preventDefault()
+  const updateHandler = async () => {
     await axios.put(`http://localhost:8000/task/${newid}`, {
       id: newid,
       description: task,
       date: date,
-      author: author
+      author: author,
     }).then((res) => {
       setPostData(res)
       console.log("data is upadated", res);
@@ -98,12 +97,12 @@ const Home = (props) => {
       setAuthor("");
     })
   }
+  
 
   return (
     <div className="todo">
       <div className="navbar">
         <h2>My Todo Application</h2>
-        <button className="save-button">Save This List</button>
       </div>
       <div className="list">
         <div className="one ">
@@ -126,14 +125,13 @@ const Home = (props) => {
             </button>
 
           </div>
-          {works.filter((itemName) => itemName.author.toLowerCase().includes(filteredItem) || itemName.date.includes(filteredItem) || itemName.description.toLowerCase().includes(filteredItem)).map((obj, key) => {
+          {works.filter((itemName) => itemName.author.toLowerCase().includes(filteredItem) || itemName.date.includes(filteredItem) || itemName.description.includes(filteredItem)).map((obj, key) => {
             return (
               <div className="task-list" key={key}>
-                <div><input type="checkbox" className="check-box" /></div>
-                <div>{obj.author}</div>
-                <div>{obj.description}</div>
-                <div>{obj.date}</div>
-                <div className="icons">
+                <div className="list-item">{obj.author}</div>
+                <div className="list-item">{obj.description}</div>
+                <div className="list-item">{obj.date}</div>
+                <div className=" icons ">
 
                   <i
                     className="fa fa-pencil-square-o update-icon"
@@ -141,15 +139,19 @@ const Home = (props) => {
                     data-bs-target="#exampleModalOne"
                     data-bs-whatever="@fat"
                     data-bs-toggle="modal"
-                    onClick={() => { setNewid(obj.id) }}
+                    onClick={() => { setNewid(obj.id);setAuthor(obj.author); setDate(obj.date); setTask(obj.description); }}
                   ></i>
                   &emsp;
 
                   <i type="button"
                     className="fa fa-trash-o delete-icon "
-                    data-bs-target="#deletemodel"
                     aria-hidden="true"
-                    onClick={() => { deleteHandler(obj.id) }}></i>
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteexampleModal"
+                    // onClick={() => { deleteHandler(obj.id) }}
+                    onClick={() => { setNewid(obj.id); }}
+
+                  ></i>
                 </div>
               </div>
             );
@@ -158,13 +160,21 @@ const Home = (props) => {
             <div className="two">
               <div className="popups">
                 {/* pop up for delete  */}
-                <div className="modal" id="deletemodel">
-                  <div className="modal_box">
-                    <p>You sure you wanna delete?</p>
-                    <button className="modal_buttonCancel">Cancel</button>
-                    <button className="modal_buttoDelete">
-                      Confirm
-                    </button>
+                <div class="modal fade" id="deleteexampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">{`Confirmation to delete ${works.author}`}</h1>
+                        {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
+                      </div>
+                      <div class="modal-body">
+                        <h5>Are you sure wanted to delete</h5>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={(obj) => { deleteHandler(obj.id) }}>confirm</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">cancel</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {/* pop up for update call */}
@@ -194,8 +204,9 @@ const Home = (props) => {
                               type="text"
                               className="form-control"
                               id="recipient-name"
-                              onChange={changeAuthorNameHandler}
-                            />
+                              onChange={(e) => setAuthor(e.target.value) }
+                              placeholder={author}
+                            >{works.author}</input>
                           </div>
 
                           <div className="mb-3">
@@ -207,7 +218,7 @@ const Home = (props) => {
                               type="text"
                               className="form-control"
                               id="recipient-name"
-                              onChange={changeTaskHandler}
+                              onChange={(e) => setTask(e.target.value)}
                             />
                           </div>
 
@@ -220,7 +231,7 @@ const Home = (props) => {
                               type="date"
                               className="form-control"
                               id="recipient-name"
-                              onChange={changeDateHandler}
+                              onChange={(e) => setDate(e.target.value)}
                             />
                           </div>
                           <div className="modal-footer ">

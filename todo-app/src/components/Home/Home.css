@@ -43,7 +43,8 @@
 .todo .list .one .input-box .search-box {
   outline: none;
   border: none;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
+  font-weight: 500;
   width: 90%;
 }
 .todo .list .one .task-list {
@@ -57,10 +58,23 @@
   border-bottom: 0.5px solid gray;
   font-size: 20px;
   font-weight: 650;
+  float: right;
 }
-.todo .list .one .task-list .check-box {
-  width: 20px;
-  height: 20px;
+.todo .list .one .task-list .list-item {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 20px;
+  font-weight: 650;
+  float: right;
+  word-wrap: nowrap;
+}
+.todo .list .one .task-list .icons {
+  display: flex;
+  margin-top: 1.5rem;
 }
 .todo .list .one .task-list .icons .delete-icon {
   cursor: pointer;
@@ -71,4 +85,5 @@
 .todo .list .one .task-list:hover {
   border: 1px solid black;
   color: black;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.41);
 }/*# sourceMappingURL=Home.css.map */
