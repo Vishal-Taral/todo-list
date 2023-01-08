@@ -1,0 +1,14 @@
+.Form-component {
+  color: blue;
+}
+.Form-component .add-btn {
+  padding: 0.5rem;
+  margin-top: 20%;
+  border-radius: 20%;
+  margin-bottom: 20%;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.Form-component .add-btn:hover {
+  background-color: rgb(186, 104, 90);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}/*# sourceMappingURL=Form.css.map */

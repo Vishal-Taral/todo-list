@@ -1,0 +1,26 @@
+.Navbar-component .one {
+  background-color: rgb(62, 48, 48);
+  padding: 0.5%;
+  color: rgba(245, 245, 245, 0.872);
+  display: flex;
+  justify-content: flex-end;
+}
+.Navbar-component .one .login:hover {
+  color: white;
+  cursor: pointer;
+}
+.Navbar-component .two {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7%;
+  background-image: linear-gradient(rgb(154, 154, 225), rgb(53, 53, 191));
+  color: white;
+  padding-left: 4%;
+  font-size: 20px;
+}
+.Navbar-component .two .save-btn {
+  background-color: #1eb760;
+  border-radius: 8px;
+  padding-left: 4%;
+  padding-right: 4%;
+}/*# sourceMappingURL=Navbar.css.map */

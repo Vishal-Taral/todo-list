@@ -1,44 +1,34 @@
-// import React, { useEffect } from 'react';
-import './AddNewTask.scss';
 import axios from 'axios';
-import {useState } from 'react';
+import './Form.scss';
+import { useState } from 'react';
 
-const AddNewTask = () => {
-  
-  const [author, setAuthor] = useState("");
+const Form = (props) => {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
-  const [Item, setItem] = useState([]);
+  
 
-  const changeAuthorNameHandler = (event) => {
-    setAuthor(event.target.value);
-  }
   const changeTaskHandler = (event) => {
     setTask(event.target.value);
   }
+
   const changeDateHandler = (event) => {
     setDate(event.target.value);
   }
 
-  
   const submitHandler = (e) => {
-    window.location.reload(true);
-    axios.post("http://localhost:8000/task", {
+    e.preventDefault()
+    axios.post(props.baseURL, {
       description: task,
       date: date,
-      author: author,
-    }).then((res) => {
-      setItem(Item);
-      console.log("data is created", res);
-      setTask("")
-      setDate("")
-      setAuthor("");
+    }).then((res)=>{
+      console.log('response',res)
     })
   }
 
-  
+
+
   return (
-    <div>
+    <div className='Form-component'>
       <div>
         <button
           type="button"
@@ -49,9 +39,9 @@ const AddNewTask = () => {
         >
           Add Item
         </button>
-      </div>
 
-      <div>
+        {/* POP UP */}
+
         <div
           className="modal fade"
           id="exampleModal"
@@ -68,47 +58,35 @@ const AddNewTask = () => {
               </div>
 
               <div className="modal-body">
-                <div>
+                <form>
                   <div className="mb-3">
                     <label htmlFor="recipient-name" className="col-form-label">
-                      Add Author Name
+                      Enter Task
                     </label>
                     <input
-                      value={author}
-                      type="text"
-                      className="form-control"
-                      id="recipient-name"
-                      onChange={changeAuthorNameHandler}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="recipient-name" className="col-form-label" >
-                      Add Task
-                    </label>
-                    <input
-                      value={task}
                       type="text"
                       className="form-control"
                       id="recipient-name"
                       onChange={changeTaskHandler}
                     />
                   </div>
+
                   <div className="mb-3">
                     <label htmlFor="recipient-name" className="col-form-label">
-                      Add Date
+                      Enter date
                     </label>
                     <input
-                      value={date}
                       type="date"
                       className="form-control"
                       id="recipient-name"
                       onChange={changeDateHandler}
                     />
                   </div>
-                  <div className="modal-footer ">
-                    <button className="btn btn-primary submit-btn" data-bs-dismiss="modal" aria-label="Close" onClick={submitHandler}>SUBMIT</button>
+
+                  <div className="modal-footer">
+                    <button className="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" onClick={submitHandler}>SUBMIT</button>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -118,4 +96,4 @@ const AddNewTask = () => {
   )
 }
 
-export default AddNewTask
+export default Form; 
