@@ -14,9 +14,9 @@ const Delete = (props) => {
         await axios.delete(`http://localhost:8000/task/${Id}`).then((res) => {
             console.log('Item Is deleted', res)
             DeleteFromList(Id);
-        })/* .catch((err) => {
+        }).catch((err) => {
             console.log(err);
-        }); */
+        });
         /* }  else {
           alert("not deleted")
         } */

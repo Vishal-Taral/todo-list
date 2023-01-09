@@ -372,7 +372,7 @@ const Home = () => {
   return (
     <div>
       <div className='nav-input'>
-        <Navbar />
+        <Navbar getJsonData={getJsonData} />
         <input type="text" className='input-box' onChange={SearchHandler} placeholder='Write your text here to serach... ' />
         <div>{
           works.filter((itemName) => itemName.author.toLowerCase().includes(filteredItem) || itemName.date.includes(filteredItem) || itemName.description.includes(filteredItem)).map((obj) => {
@@ -380,10 +380,10 @@ const Home = () => {
               <div className='todo' key={obj.id}>
                 <div className='task-list'  >
                   {/* <div className='list-item'>{key+1}</div> */}
-                  <div className="checkbox-input"><input type="checkbox" /></div>
-                  <div className="list-item">{obj.author}</div>
-                  <div className="list-item">{obj.description}</div>
-                  <div className="list-item">{obj.date}</div>
+                  {/* <div className="checkbox-input"><input type="checkbox" className='checkbox-input'/></div> */}
+                  <div className="list-item col-3">{obj.author}</div>
+                  <div className="list-item col-3">{obj.description}</div>
+                  <div className="list-item col-2">{obj.date}</div>
                   <div className='icons'>
                     <div className='update-icon'>
                       <i
@@ -403,7 +403,6 @@ const Home = () => {
                         aria-hidden="true"
                         data-bs-toggle="modal"
                         data-bs-target="#deleteexampleModal"
-                        //   onClick={() => { deleteHandler(props.obj.id) }}
                         onClick={() => setId(obj.id)}
                       ></i>
                     </div>
@@ -416,7 +415,7 @@ const Home = () => {
       </div>
 
       {/* {openModal && <Modal closeModal={setOpenModal} />} */}
-      <Update Id={id} updateWorks={deleteRow} data={data} setdata={setData} />
+      <Update getJsonData={getJsonData} data={data} setdata={setData} />
       <Delete Id={id} updateWorks={deleteRow} />
     </div>
   )

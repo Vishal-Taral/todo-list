@@ -136,8 +136,9 @@
 
     .todo {
         .task-list {
+            // height: 60px;
             display: flex;
-            justify-content: space-between;
+            // justify-content: space-between;
             padding: 1%;
             // padding-right: 2%;
             border-bottom: 0.3px solid rgb(243, 231, 231);
@@ -147,9 +148,30 @@
             font-weight: 480;
             padding-left: 4%;
             padding-right: 4%;
+            text-align: left;
+        
+
+            .checkbox-input {
+                width: 20px;
+                height: 20px;
+            }
+
+            .list-item {
+                margin-left: 3%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .list-item:hover {
+                overflow: visible;
+                white-space: normal;
+                height: auto;
+            }
 
             .icons {
                 display: flex;
+                margin-left: 18%
             }
         }
 

@@ -3,7 +3,7 @@ import './Navbar.scss';
 import AddNewTask from '../AddNewTask/AddNewTask';
 
 const Navbar = (props) => {
-
+      const {getJsonData} = props;
   return (
     <div className='Navbar-component'>
       <div className='nav one'>
@@ -12,7 +12,7 @@ const Navbar = (props) => {
       <div className='nav two'>
         <h4>My to-do list </h4>
         {/* <button className='save-btn'>Save This List</button> */}
-        <AddNewTask />
+        <AddNewTask getJsonData={getJsonData}/>
       </div>
 
     </div>

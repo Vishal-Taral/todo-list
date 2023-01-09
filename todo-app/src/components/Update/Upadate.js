@@ -5,9 +5,7 @@ import { useState,useEffect } from 'react';
 
 const Update = (props) => {
 
-  console.log(props.data)
   const {description, date, author, id } = props.data;
-
 
   const [authorName, setAuthor] = useState('');
   const [task, setTask] = useState('');
@@ -20,12 +18,12 @@ const Update = (props) => {
     setTask(description)
     setDate(date)
     setNewid(id)
-  }, [author]);
+  }, [author, date, description, id]);
   
 
  
   const updateHandler = async (id) => {
-    window.location.reload(true);
+    // window.location.reload(true);
     await axios.put(`http://localhost:8000/task/${newid}`, {
       id: newid,
       description: task,
@@ -33,6 +31,7 @@ const Update = (props) => {
       author: authorName,
     }).then((res) => {
       console.log("data is upadated", res);
+      props.getJsonData();
       setTask("");
       setDate("");
       setAuthor("");

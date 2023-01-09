@@ -1,14 +1,14 @@
 // import React, { useEffect } from 'react';
 import './AddNewTask.scss';
 import axios from 'axios';
-import {useState } from 'react';
+import { useState } from 'react';
 
-const AddNewTask = () => {
-  
+const AddNewTask = (props) => {
+
   const [author, setAuthor] = useState("");
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
-  const [Item, setItem] = useState([]);
+  // const [Item, setItem] = useState([]);
 
   const changeAuthorNameHandler = (event) => {
     setAuthor(event.target.value);
@@ -20,23 +20,23 @@ const AddNewTask = () => {
     setDate(event.target.value);
   }
 
-  
+
   const submitHandler = (e) => {
-    window.location.reload(true);
+    // window.location.reload(true);
     axios.post("http://localhost:8000/task", {
       description: task,
       date: date,
       author: author,
     }).then((res) => {
-      setItem(Item);
       console.log("data is created", res);
+      props.getJsonData();
       setTask("")
       setDate("")
       setAuthor("");
     })
   }
 
-  
+
   return (
     <div>
       <div>
