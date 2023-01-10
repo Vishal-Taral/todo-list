@@ -375,7 +375,7 @@ const Home = () => {
         <Navbar getJsonData={getJsonData} />
         <input type="text" className='input-box' onChange={SearchHandler}  placeholder='Write your text here to search... ' />
         <div>{
-          works.filter((itemName) =>  itemName.author.toLowerCase().includes(filteredItem.toLowerCase()) || itemName.date.includes(filteredItem) || itemName.description.includes(filteredItem)).map((obj) => {
+          works.filter((itemName) =>  itemName.author.toLowerCase().includes(filteredItem.toLowerCase()) || itemName.date.includes(filteredItem) || itemName.description.toLowerCase().includes(filteredItem.toLowerCase())).map((obj) => {
             return (
               <div className='todo' key={obj.id}>
                 <div className='task-list'>
