@@ -132,6 +132,11 @@
         width: 100%;
         font-size: 35px;
         font-weight: 600;
+        text-transform: none;
+    }
+
+    .input-box{
+        border: 1px solid black;
     }
 
     .todo {
@@ -154,6 +159,7 @@
             .checkbox-input {
                 width: 20px;
                 height: 20px;
+                
             }
 
             .list-item {

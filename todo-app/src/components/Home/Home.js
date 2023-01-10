@@ -373,12 +373,12 @@ const Home = () => {
     <div>
       <div className='nav-input'>
         <Navbar getJsonData={getJsonData} />
-        <input type="text" className='input-box' onChange={SearchHandler} placeholder='Write your text here to serach... ' />
+        <input type="text" className='input-box' onChange={SearchHandler}  placeholder='Write your text here to search... ' />
         <div>{
-          works.filter((itemName) => itemName.author.toLowerCase().includes(filteredItem) || itemName.date.includes(filteredItem) || itemName.description.includes(filteredItem)).map((obj) => {
+          works.filter((itemName) =>  itemName.author.toLowerCase().includes(filteredItem.toLowerCase()) || itemName.date.includes(filteredItem) || itemName.description.includes(filteredItem)).map((obj) => {
             return (
               <div className='todo' key={obj.id}>
-                <div className='task-list'  >
+                <div className='task-list'>
                   {/* <div className='list-item'>{key+1}</div> */}
                   {/* <div className="checkbox-input"><input type="checkbox" className='checkbox-input'/></div> */}
                   <div className="list-item col-3">{obj.author}</div>
