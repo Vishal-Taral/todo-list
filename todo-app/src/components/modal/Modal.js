@@ -1,25 +1,21 @@
-import React from 'react'
+import React from 'react';
+import './Modal.scss';
 
-const Modal = ({closeModal}) => {
-  return (
-    <div className='modalbackground' tabIndex="-1" aria-labelledby="exampleModalLabel" >
-        <div className='modalContainer'>
-            <button onClick={() => closeModal(false)}>X</button>
-            <div className='title'>
-                <p>please update item</p>
-            </div>
-            <hr />
-            
-            <div className='body'>
-                <input type="text" />
-            </div>
-            <hr />
-            <div className='footer'>
-                <button onClick={() => closeModal(false)}>Cancel</button>
+const Modal = ({ closeModal }) => {
+    return (
+        
+        <div className='modal-background'>
+            <div className='modalContainer mt-3'>
+                <div className='title '>
+                    <h5>Are you sure wanted to delete</h5>
+                </div>
+
+                <div className='footer mt-3'>
+                    <button onClick={() => closeModal(false)}>Confirm</button>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Modal

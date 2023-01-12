@@ -9,7 +9,7 @@ const Navbar = (props) => {
       <div className='nav one'>
         <h6 className='login'>Login</h6>
       </div>
-      <div className='nav two'>
+      <div className=' two'>
         <h4>My to-do list </h4>
         {/* <button className='save-btn'>Save This List</button> */}
         <AddNewTask getJsonData={getJsonData}/>

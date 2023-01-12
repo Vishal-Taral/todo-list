@@ -323,16 +323,18 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Update from '../Update/Upadate';
 import Delete from '../Delete/Delete';
+import Modal from '../modal/Modal';
+// import AddNewTask from '../AddNewTask/AddNewTask';
+
 // import Update from '../Update/Upadate';
 // import Delete from '../Delete/Delete';
-// import Modal from '../modal/Modal';
 
 const Home = () => {
   const [works, setWorks] = useState([]);
   const [id, setId] = useState(0);
   const [data, setData] = useState({});
   const [filteredItem, setFilteredItem] = useState("");
-  // const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   // const [postData, setPostData] = useState("");
   // const [deletedItem, setDeletedItem] = useState();
   // const [show, setShow] = useState(false);
@@ -369,56 +371,61 @@ const Home = () => {
     })
     setWorks(updateWorks);
   }
+
   return (
     <div>
       <div className='nav-input'>
-        <Navbar getJsonData={getJsonData} />
-        <input type="text" className='input-box' onChange={SearchHandler}  placeholder='Write your text here to search... ' />
-        <div>{
-          works.filter((itemName) =>  itemName.author.toLowerCase().includes(filteredItem.toLowerCase()) || itemName.date.includes(filteredItem) || itemName.description.toLowerCase().includes(filteredItem.toLowerCase())).map((obj) => {
-            return (
-              <div className='todo' key={obj.id}>
-                <div className='task-list'>
-                  {/* <div className='list-item'>{key+1}</div> */}
-                  {/* <div className="checkbox-input"><input type="checkbox" className='checkbox-input'/></div> */}
-                  <div className="list-item col-3">{obj.author}</div>
-                  <div className="list-item col-3">{obj.description}</div>
-                  <div className="list-item col-2">{obj.date}</div>
-                  <div className='icons'>
-                    <div className='update-icon'>
-                      <i
-                        className="fa fa-pencil-square-o update-icon"
-                        aria-hidden="true"
-                        data-bs-target="#exampleModalOne"
-                        data-bs-whatever="@fat"
-                        data-bs-toggle="modal"
-                        onClick={() => {
-                          setData(obj)
-                        }}
-                      ></i>
-                    </div>&emsp;
-                    <div className='delete-icon'>
-                      <i type="button"
-                        className="fa fa-trash-o  "
-                        aria-hidden="true"
-                        data-bs-toggle="modal"
-                        data-bs-target="#deleteexampleModal"
-                        onClick={() => setId(obj.id)}
-                      ></i>
+        <div className='nav-div'>
+          <Navbar getJsonData={getJsonData} />
+          <input type="text" className='input-box' onChange={SearchHandler} placeholder='Write your text here to search... ' />
+        </div>
+          {/* <AddNewTask getJsonData={getJsonData}/> */}
+          <div>{
+            works.filter((itemName) => itemName.author.toLowerCase().includes(filteredItem.toLowerCase()) || itemName.date.includes(filteredItem) || itemName.description.toLowerCase().includes(filteredItem.toLowerCase())).map((obj) => {
+              return (
+                <div className='todo' key={obj.id}>
+                  <div className='task-list'>
+                    {/* <div className='list-item'>{key+1}</div> */}
+                    {/* <div className="checkbox-input"><input type="checkbox" className='checkbox-input'/></div> */}
+                    <div className="list-item col-3">{obj.author}</div>
+                    <div className="list-item col-3">{obj.description}</div>
+                    <div className="list-item col-2">{obj.date}</div>
+                    <div className='icons'>
+                      <div className='update-icon'>
+                        <i
+                          className="fa fa-pencil-square-o update-icon"
+                          aria-hidden="true"
+                          data-bs-target="#exampleModalOne"
+                          data-bs-whatever="@fat"
+                          data-bs-toggle="modal"
+                          onClick={() => {
+                            setData(obj)
+                          }}
+                        ></i>
+                      </div>&emsp;
+                      <div className='delete-icon'>
+                        <i type="button"
+                          className="fa fa-trash-o  "
+                          aria-hidden="true"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteexampleModal"
+                          onClick={() => setId(obj.id)}
+                        ></i>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
+          <button className='open-modal mt-2' onClick={() => { setOpenModal(true) }}>button to open custom modal</button>
+          {openModal && <Modal closeModal={setOpenModal} />}
         </div>
-      </div>
 
-      {/* {openModal && <Modal closeModal={setOpenModal} />} */}
-      <Update getJsonData={getJsonData} data={data} setdata={setData} />
-      <Delete Id={id} updateWorks={deleteRow} />
-    </div>
-  )
+        <Update getJsonData={getJsonData} data={data} setdata={setData} />
+        <Delete Id={id} updateWorks={deleteRow} />
+      </div>
+      )
 }
 
 export default Home

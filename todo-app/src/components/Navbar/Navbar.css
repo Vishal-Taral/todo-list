@@ -4,6 +4,7 @@
   color: rgba(245, 245, 245, 0.872);
   display: flex;
   justify-content: flex-end;
+  padding-right: 2.3rem;
 }
 .Navbar-component .one .login:hover {
   color: white;
@@ -16,6 +17,7 @@
   background-image: linear-gradient(rgb(154, 154, 225), rgb(53, 53, 191));
   color: white;
   padding-left: 4%;
+  padding-right: 2rem;
   font-size: 20px;
 }
 .Navbar-component .two .save-btn {
