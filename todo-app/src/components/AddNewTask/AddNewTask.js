@@ -1,4 +1,3 @@
-// import React, { useEffect } from 'react';
 import './AddNewTask.scss';
 import axios from 'axios';
 import { useState } from 'react';
@@ -11,39 +10,37 @@ const AddNewTask = (props) => {
   const [authorNameError, setAuthorNameError] = useState(false);
   const [taskError, setTaskError] = useState(false);
   const [dateError, setDateError] = useState(false);
-  // const [Item, setItem] = useState([]);
 
   const changeAuthorNameHandler = (event) => {
-    let name = event.target.value;
-    setAuthor(name);
-    if (name.length === 0) {
+    let enterdName = event.target.value;
+    setAuthor(enterdName);
+    if (enterdName.length === 0) {
       setAuthorNameError(true);
     } else {
       setAuthorNameError(false);
     }
   }
   const changeTaskHandler = (event) => {
-    let task = event.target.value;
-    setTask(task);
-    if (task.length === 0) {
+    let enteredTask = event.target.value;
+    setTask(enteredTask);
+    if (enteredTask.length === 0) {
       setTaskError(true);
     } else {
       setTaskError(false);
     }
   }
   const changeDateHandler = (event) => {
-    let date = event.target.value;
-    setDate(date);
-    if (date.length === 0) {
+    let enteredDate = event.target.value;
+    console.log("length of date is ", enteredDate.length);
+    setDate(enteredDate);
+    if (enteredDate.length === 0) {
       setDateError(true);
     } else {
       setDateError(false);
     }
   }
 
-
   const submitHandler = (e) => {
-    // window.location.reload(true);
     if (author.length === 0) {
       setAuthorNameError(true);
     }
@@ -52,7 +49,8 @@ const AddNewTask = (props) => {
     }
     if (date.length === 0) {
       setDateError(true);
-    } else {
+    }
+    if (author.length !== 0 && task.length !== 0 && date.length !== 0) {
       axios.post("http://localhost:8000/task", {
         description: task,
         date: date,
@@ -71,6 +69,9 @@ const AddNewTask = (props) => {
     setAuthorNameError(false);
     setTaskError(false);
     setDateError(false);
+    setDate("");
+    setAuthor("");
+    setTask("");
   }
 
   return (
@@ -89,7 +90,7 @@ const AddNewTask = (props) => {
 
       <div>
         <div
-          className="modal "
+          className="modal fade"
           id="exampleModal"
           tabIndex="-1"
           aria-labelledby="exampleModalLabel"

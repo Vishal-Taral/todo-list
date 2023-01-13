@@ -323,23 +323,12 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Update from '../Update/Upadate';
 import Delete from '../Delete/Delete';
-import Modal from '../modal/Modal';
-// import AddNewTask from '../AddNewTask/AddNewTask';
-
-// import Update from '../Update/Upadate';
-// import Delete from '../Delete/Delete';
 
 const Home = () => {
   const [works, setWorks] = useState([]);
   const [id, setId] = useState(0);
   const [data, setData] = useState({});
   const [filteredItem, setFilteredItem] = useState("");
-  const [openModal, setOpenModal] = useState(false);
-  // const [postData, setPostData] = useState("");
-  // const [deletedItem, setDeletedItem] = useState();
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
 
   const getJsonData = () => {
     axios
@@ -378,15 +367,21 @@ const Home = () => {
         <div className='nav-div'>
           <Navbar getJsonData={getJsonData} />
           <input type="text" className='input-box' onChange={SearchHandler} placeholder='Write your text here to search... ' />
+          <div className='headers d-flex fs-4'>
+            <div className="list-item col-3">Author Name</div>
+            <div className="list-item col-3">description</div>
+            <div className="list-item col-3">Date</div>
+            <div className="list-item col-3">Action</div>
+
+          </div>
         </div>
-          {/* <AddNewTask getJsonData={getJsonData}/> */}
-          <div>{
+        <div className='table-wrapper'>
+
+          {
             works.filter((itemName) => itemName.author.toLowerCase().includes(filteredItem.toLowerCase()) || itemName.date.includes(filteredItem) || itemName.description.toLowerCase().includes(filteredItem.toLowerCase())).map((obj) => {
               return (
                 <div className='todo' key={obj.id}>
                   <div className='task-list'>
-                    {/* <div className='list-item'>{key+1}</div> */}
-                    {/* <div className="checkbox-input"><input type="checkbox" className='checkbox-input'/></div> */}
                     <div className="list-item col-3">{obj.author}</div>
                     <div className="list-item col-3">{obj.description}</div>
                     <div className="list-item col-2">{obj.date}</div>
@@ -417,15 +412,13 @@ const Home = () => {
                 </div>
               )
             })}
-          </div>
-          <button className='open-modal mt-2' onClick={() => { setOpenModal(true) }}>button to open custom modal</button>
-          {openModal && <Modal closeModal={setOpenModal} />}
         </div>
-
-        <Update getJsonData={getJsonData} data={data} setdata={setData} />
-        <Delete Id={id} updateWorks={deleteRow} />
       </div>
-      )
+
+      <Update getJsonData={getJsonData} data={data} setdata={setData} />
+      <Delete Id={id} updateWorks={deleteRow} />
+    </div>
+  )
 }
 
 export default Home

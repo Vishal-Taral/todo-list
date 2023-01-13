@@ -123,9 +123,19 @@
 
 /************************************************************************/
 .nav-input {
+    height: 100%;
+    .table-wrapper {
+        height: calc(100vh - 161px);
+        overflow: scroll;
+    }
+
     .nav-div {
-        // position: sticky;
-        // top: 0px;
+
+        .headers{
+            background-color:darkkhaki;
+            color: white;
+            border-bottom: 1px solid rgb(160, 138, 181);
+        }
         .input-box {
             outline: none;
             border: none;
@@ -142,11 +152,8 @@
 
     .todo {
         .task-list {
-            // height: 60px;
             display: flex;
-            // justify-content: space-between;
             padding: 1%;
-            // padding-right: 2%;
             border-bottom: 0.3px solid rgb(243, 231, 231);
             border-top: 0.3px solid rgb(243, 231, 231);
             color: #555;
@@ -155,7 +162,6 @@
             padding-left: 4%;
             padding-right: 4%;
             text-align: left;
-
 
             .checkbox-input {
                 width: 20px;
@@ -178,7 +184,7 @@
 
             .icons {
                 display: flex;
-                margin-left: 18%
+                margin-left: 14%
             }
         }
 

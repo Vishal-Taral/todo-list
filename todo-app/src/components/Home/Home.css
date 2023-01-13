@@ -1,4 +1,16 @@
 /************************************************************************/
+.nav-input {
+  height: 100%;
+}
+.nav-input .table-wrapper {
+  height: calc(100vh - 161px);
+  overflow: scroll;
+}
+.nav-input .nav-div .headers {
+  background-color: darkkhaki;
+  color: white;
+  border-bottom: 1px solid rgb(160, 138, 181);
+}
 .nav-input .nav-div .input-box {
   outline: none;
   border: none;
@@ -40,7 +52,7 @@
 }
 .nav-input .todo .task-list .icons {
   display: flex;
-  margin-left: 18%;
+  margin-left: 14%;
 }
 .nav-input .todo .task-list:hover {
   border-bottom: 1px solid gray;

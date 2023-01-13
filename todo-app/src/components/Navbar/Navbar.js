@@ -11,7 +11,6 @@ const Navbar = (props) => {
       </div>
       <div className=' two'>
         <h4>My to-do list </h4>
-        {/* <button className='save-btn'>Save This List</button> */}
         <AddNewTask getJsonData={getJsonData}/>
       </div>
 
