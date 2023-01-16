@@ -1,7 +1,6 @@
-import './Upadate.scss';
 import axios from 'axios';
+import './Upadate.scss';
 import { useState, useEffect } from 'react';
-
 
 const Update = (props) => {
 
@@ -79,9 +78,6 @@ const Update = (props) => {
       }).then((res) => {
         console.log("data is upadated", res);
         props.getJsonData();
-        // setTask("");
-        // setDate("");
-        // setAuthor("");
       })
     }
   }
@@ -90,8 +86,10 @@ const Update = (props) => {
     setAuthorNameError(false);
     setTaskError(false);
     setDateError(false);
+    setAuthor(author);
+    setTask(description);
+    setDate(date);
   }
-
   return (
     <>
       <div

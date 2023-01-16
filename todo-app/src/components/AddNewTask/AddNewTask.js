@@ -148,7 +148,7 @@ const AddNewTask = (props) => {
                     {dateError ? <p style={{ color: "red" }}>date reqired</p> : ""}
                   </div>
                   <div className="modal-footer ">
-                    <button className="btn btn-primary submit-btn " /* data-bs-dismiss="modal"  aria-label="Close" */ onClick={submitHandler} >SUBMIT</button>
+                    <button className="btn btn-primary submit-btn " onClick={submitHandler} >SUBMIT</button>
                   </div>
                 </div>
               </div>

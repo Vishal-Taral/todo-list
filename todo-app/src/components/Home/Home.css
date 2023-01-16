@@ -3,7 +3,7 @@
   height: 100%;
 }
 .nav-input .table-wrapper {
-  height: calc(100vh - 161px);
+  height: calc(90vh - 161px);
   overflow: scroll;
 }
 .nav-input .nav-div .headers {

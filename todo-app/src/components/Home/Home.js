@@ -317,7 +317,7 @@
 // export default Home;
 
 import React from 'react'
-import './Home.scss'
+import './Home.scss';
 import Navbar from '../Navbar/Navbar';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
